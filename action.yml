@@ -18,6 +18,10 @@ inputs:
     description: Directory to run checks against.
     default: 'src'
 
+  args:
+    description: Catch-all for any command-line arguments you would like to add.
+    default: ''
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -26,6 +30,7 @@ runs:
     - ${{ inputs.level }}
     - ${{ inputs.reporter }}
     - ${{ inputs.target_directory }}
+    - ${{ inputs.args }}
 
 branding:
   icon: 'check-circle'

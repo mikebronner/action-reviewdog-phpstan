@@ -1,5 +1,5 @@
-# GitHub Action: Run PHPMD with ReviewDog
-This action runs [PHP Mess Detector](https://phpmd.org) with [ReviewDog](https://github.com/reviewdog/reviewdog).
+# GitHub Action: Run PHPSTAN with ReviewDog
+This action runs [PHP Static Analyzer](https://phpstan.org) with [ReviewDog](https://github.com/reviewdog/reviewdog).
 
 ## Inputs
 ### `github_token`
@@ -13,19 +13,12 @@ Report level for reviewdog [info,warning,error]. It's same as `-level` flag of r
 Reporter of reviewdog command [github-pr-check,github-check,github-pr-review]. It's same as `-reporter` flag of reviewdog.
 **Default** `github-pr-check`
 
-### `standard`
-Can be any one or more of (in a comma-separated list without spaces):
-- `cleancode`
-- `codesize`
-- `controversial`
-- `design`
-- `naming`
-- `unusedcode`
-or a custom rules configuration file path.
-**Default** `cleancode,codesize,controversial,design,naming,unusedcode`
-
 ### `target_directory`
 **Default** `src`
+
+### `args`
+This is a catch-all for any other commandline arguments you want to add to PHPStan.
+**Default** ''
 
 ## Usage
 ```yml
@@ -38,18 +31,12 @@ or a custom rules configuration file path.
 #     branches: [ master, develop ]
 
 # jobs:
-  phpmd-linter:
-    name: PHPMD
+  phpstan-linter:
+    name: PHPStan
     runs-on: ubuntu-latest
     steps:
-        - name: Check out code into the workspace
-            uses: actions/checkout@v2
-        - name: Run php check code with reviewdog
-            uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
-            with:
-                github_token: '${{ github.token }}'
-                level: 'warning'
-                reporter: 'github-pr-check'
-                standard: 'cleancode,codesize,controversial,design,naming,unusedcode'
-                target_directory: 'src'
+      - name: Check out code into the workspace
+        uses: actions/checkout@v2
+      - name: Run php check code with reviewdog
+        uses: GeneaLabs/action-reviewdog-phpstan
 ```
