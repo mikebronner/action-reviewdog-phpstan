@@ -1,0 +1,37 @@
+name: 'Run PHPMD with ReviewDog'
+description: '🐾 Run PHP Mess Detector with ReviewDog.'
+author: 'Mike Bronner'
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN'
+    default: '${{ github.token }}'
+
+  level:
+    description: 'Report level for reviewdog [info,warning,error].'
+    default: 'warning'
+
+  reporter:
+    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
+    default: 'github-pr-check'
+
+  standard:
+    description: Coding standard or path to configuration file
+    default: 'cleancode,codesize,controversial,design,naming,unusedcode'
+
+  target_directory:
+    description: Directory to run checks against.
+    default: 'src'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github_token }}
+    - ${{ inputs.level }}
+    - ${{ inputs.reporter }}
+    - ${{ inputs.standard }}
+    - ${{ inputs.target_directory }}
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
