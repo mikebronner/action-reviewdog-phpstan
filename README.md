@@ -38,7 +38,6 @@ phpstan-linter:
             with:
                 php_version: 7.4
                 version: 2
-                level: 3
                 command: install --no-scripts --ignore-platform-reqs
         -   name: Run php check code with reviewdog
             uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
