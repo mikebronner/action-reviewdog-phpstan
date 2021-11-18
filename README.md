@@ -20,6 +20,10 @@ Reporter of reviewdog command [github-pr-check,github-check,github-pr-review]. I
 ### `target_directory`
 **Default** `src`
 
+### `fail_on_error`
+Fail on error.
+**Default** `false`
+
 ### `args`
 This is a catch-all for any other commandline arguments you want to add to PHPStan.
 **Default** ''
@@ -33,17 +37,12 @@ phpstan-linter:
     steps:
         -   name: Check out code into the workspace
             uses: actions/checkout@v2
-        -   name: Install dependencies for PHPStan
-            uses: php-actions/composer@v5
-            with:
-                php_version: 7.4
-                version: 2
-                command: install --no-scripts --ignore-platform-reqs
         -   name: Run php check code with reviewdog
             uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
             with:
                 github_token: '${{ github.token }}'
                 level: 'error'
+                fail_on_error: 'false'
                 phpstan_level: 4
                 reporter: 'github-pr-review'
                 target_directory: 'src'
