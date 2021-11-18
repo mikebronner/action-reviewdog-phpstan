@@ -10,6 +10,10 @@ inputs:
     description: 'Report level for reviewdog [info,warning,error].'
     default: 'warning'
 
+  phpstan_level:
+    description: 'Report level for phpstan.'
+    default: '4'
+
   reporter:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
@@ -17,6 +21,10 @@ inputs:
   target_directory:
     description: Directory to run checks against.
     default: 'src'
+
+  fail_on_error:
+    description: Fail on error.
+    default: 'false'
 
   args:
     description: Catch-all for any command-line arguments you would like to add.
@@ -31,6 +39,7 @@ runs:
     - ${{ inputs.reporter }}
     - ${{ inputs.target_directory }}
     - ${{ inputs.args }}
+    - ${{ inputs.fail_on_error }}
     - ${{ inputs.phpstan_level }}
 
 branding:
