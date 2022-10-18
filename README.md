@@ -38,7 +38,7 @@ phpstan-linter:
         -   name: Check out code into the workspace
             uses: actions/checkout@v2
         -   name: Run php check code with reviewdog
-            uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
+            uses: GeneaLabs/action-reviewdog-phpstan@1.1.2
             with:
                 github_token: '${{ github.token }}'
                 level: 'error'
