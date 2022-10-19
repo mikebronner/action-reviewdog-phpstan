@@ -26,6 +26,11 @@ inputs:
     description: Fail on error.
     default: 'false'
 
+  base_image:
+    description: The base image to use for this action
+    default: 'php:8.0-alpine'
+    required: false
+
   args:
     description: Catch-all for any command-line arguments you would like to add.
     default: ''
@@ -34,6 +39,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.base_image }}
     - ${{ inputs.github_token }}
     - ${{ inputs.level }}
     - ${{ inputs.reporter }}
