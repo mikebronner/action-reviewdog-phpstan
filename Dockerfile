@@ -1,5 +1,4 @@
-ARG BASE_IMAGE=php:8.1-alpine
-FROM $BASE_IMAGE
+FROM php:8.1-alpine
 
 ENV REVIEWDOG_VERSION=v0.14.1
 
