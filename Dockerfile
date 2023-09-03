@@ -1,4 +1,4 @@
-FROM php:8.1-alpine
+FROM php:8.2-alpine@sha256:b5884ca8bf409cf571b321143ff30cfea16b9abab7245b9742343d3eee4abf3b
 
 ENV REVIEWDOG_VERSION=v0.14.1
 
